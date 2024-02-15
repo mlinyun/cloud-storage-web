@@ -1,13 +1,15 @@
 <template>
-  <div class="home">这是网盘主页</div>
+  <div class="login">这是登录页面</div>
 </template>
 
 <script>
 export default {
-  name: "HomeView",
+  name: "LoginView",
   data() {
     return {};
   },
   methods: {},
 };
 </script>
+
+<style scoped lang="stylus"></style>

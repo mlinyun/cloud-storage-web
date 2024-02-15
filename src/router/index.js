@@ -1,26 +1,66 @@
+// 1. 从依赖包中导入函数 createRouter 和 createWebHistory
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
+// 2. 从其文件导入路由组件（使用懒加载）
+const HomeView = () =>
+  import(/* webpackChunkName: "home" */ "@/views/HomeView.vue"); // 网盘主页
+const LoginView = () =>
+  import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"); // 登录页面
+const RegisterView = () =>
+  import(/* webpackChunkName: "register" */ "@/views/RegisterView.vue"); // 注册页面
+const Error404 = () =>
+  import(/* webpackChunkName: "error_404" */ "@/views/Error_404.vue"); // 404 页面
+
+// 3. 定义一些路由：每个路由都需要映射到一个组件
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+    meta: {
+      title: "网盘主页",
+    },
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/login",
+    name: "login",
+    component: LoginView,
+    meta: {
+      title: "登录",
+    },
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterView,
+    meta: {
+      title: "注册",
+    },
+  },
+  {
+    path: "/:pathMatch(.*)*", // 将匹配所有内容并将其放在 $route.params.pathMatch 下
+    name: "Error_404",
+    component: Error404,
+    meta: {
+      title: "Error-404",
+    },
   },
 ];
 
+// 4. createRouter 方法创建一个路由实例 router
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
+// 路由全局前置守卫
+router.beforeEach((to, from, next) => {
+  // 根据路由元信息设置文档标题
+  if (to.meta.title) {
+    window.document.title = "凌云网盘系统 | " + to.meta.title;
+  }
+  next();
+});
+
+// 5. 导入路由对象
 export default router;
