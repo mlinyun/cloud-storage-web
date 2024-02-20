@@ -4,8 +4,10 @@ const IconsResolver = require("unplugin-icons/resolver");
 const AutoImport = require("unplugin-auto-import/webpack");
 const Components = require("unplugin-vue-components/webpack");
 const { ElementPlusResolver } = require("unplugin-vue-components/resolvers");
+const productConfig = require("./public/config.json"); // 引入 config.json 文件
 module.exports = defineConfig({
   transpileDependencies: true,
+  publicPath: "/",
   configureWebpack: {
     plugins: [
       AutoImport({
@@ -46,5 +48,21 @@ module.exports = defineConfig({
       args[0].title = "凌云网盘系统";
       return args;
     });
+  },
+  devServer: {
+    host: "0.0.0.0",
+    open: true,
+    allowedHosts: "all",
+    proxy: {
+      // 配置代理，解决跨域请求后台数据的问题
+      "/api": {
+        target: productConfig.baseUrl, // 后台接口，连接本地服务
+        ws: true, //是否跨域
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": "/api",
+        },
+      },
+    },
   },
 });

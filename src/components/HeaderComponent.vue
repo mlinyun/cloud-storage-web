@@ -12,17 +12,30 @@
         <h1 class="logo-text">凌云网盘系统</h1>
       </el-menu-item>
       <div class="flex-grow" />
-      <el-menu-item index="Login" :route="{ name: 'login' }">
+      <el-menu-item index="Login" :route="{ name: 'login' }" v-show="!isLogin">
         登录
       </el-menu-item>
-      <el-menu-item index="Register" :route="{ name: 'register' }">
+      <el-menu-item
+        index="Register"
+        :route="{ name: 'register' }"
+        v-show="!isLogin"
+      >
         注册
       </el-menu-item>
+      <el-menu-item v-show="isLogin">
+        <el-icon>
+          <i-ep-userFilled />
+        </el-icon>
+        {{ username }}
+      </el-menu-item>
+      <el-menu-item v-show="isLogin" @click="exitButton">退出</el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script>
+import Cookies from "js-cookie";
+
 export default {
   name: "HeaderComponent",
   data() {
@@ -32,6 +45,22 @@ export default {
     // 当前激活菜单的 index
     activeIndex() {
       return this.$route.name; // 获取当前路由名称
+    },
+    // 登录状态
+    isLogin() {
+      return this.$store.getters.isLogin;
+    },
+    // 用户名
+    username() {
+      return this.$store.getters.username;
+    },
+  },
+  methods: {
+    // 退出登录
+    exitButton() {
+      Cookies.set("token", "");
+      this.$router.push({ path: "/login" }); // 退出登录后跳转到登录页面
+      this.$message.success("退出登录成功！");
     },
   },
 };

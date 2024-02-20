@@ -19,6 +19,7 @@ const routes = [
     component: HomeView,
     meta: {
       title: "网盘主页",
+      requireAuth: true,
     },
   },
   {
@@ -51,15 +52,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-// 路由全局前置守卫
-router.beforeEach((to, from, next) => {
-  // 根据路由元信息设置文档标题
-  if (to.meta.title) {
-    window.document.title = "凌云网盘系统 | " + to.meta.title;
-  }
-  next();
 });
 
 // 5. 导入路由对象
