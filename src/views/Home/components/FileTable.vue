@@ -2,7 +2,7 @@
   <div id="file-table">
     <el-table
       :data="tableData"
-      height="calc(100vh - 104px)"
+      height="calc(100vh - 152px)"
       style="width: 100%"
     >
       <el-table-column fixed prop="fileName" label="文件名"></el-table-column>

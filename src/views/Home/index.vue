@@ -8,6 +8,8 @@
       <BreadCrumb></BreadCrumb>
       <!-- 表格组件 - 文件展示区 -->
       <FileTable></FileTable>
+      <!-- 分页组件 -->
+      <FilePagination></FilePagination>
     </div>
   </div>
 </template>
@@ -16,6 +18,7 @@
 import SideMenu from "./components/SideMenu.vue"; // 引入左侧菜单组件
 import BreadCrumb from "./components/BreadCrumb.vue"; // 引入面包屑导航栏
 import FileTable from "./components/FileTable.vue"; // 引入文件表格展示区
+import FilePagination from "./components/FilePagination.vue"; //  引入分页组件
 
 export default {
   name: "HomeView",
@@ -23,6 +26,7 @@ export default {
     SideMenu, // 注册左侧菜单组件
     BreadCrumb,
     FileTable,
+    FilePagination,
   },
   data() {
     return {};
