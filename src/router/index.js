@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // 2. 从其文件导入路由组件（使用懒加载）
 const HomeView = () =>
-  import(/* webpackChunkName: "home" */ "@/views/HomeView.vue"); // 网盘主页
+  import(/* webpackChunkName: "home" */ "@/views/Home/index.vue"); // 网盘主页
 const LoginView = () =>
   import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"); // 登录页面
 const RegisterView = () =>
