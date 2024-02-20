@@ -6,19 +6,23 @@
     <div class="home-right">
       <!-- 面包屑导航栏 - 显示文件路径 -->
       <BreadCrumb></BreadCrumb>
+      <!-- 表格组件 - 文件展示区 -->
+      <FileTable></FileTable>
     </div>
   </div>
 </template>
 
 <script>
 import SideMenu from "./components/SideMenu.vue"; // 引入左侧菜单组件
-import BreadCrumb from "./components/BreadCrumb.vue"; // 面包屑导航
+import BreadCrumb from "./components/BreadCrumb.vue"; // 引入面包屑导航栏
+import FileTable from "./components/FileTable.vue"; // 引入文件表格展示区
 
 export default {
   name: "HomeView",
   components: {
     SideMenu, // 注册左侧菜单组件
     BreadCrumb,
+    FileTable,
   },
   data() {
     return {};
