@@ -4,6 +4,8 @@
     <SideMenu class="home-left"></SideMenu>
     <!-- 右侧内容区 -->
     <div class="home-right">
+      <!-- 列显隐控制组件 -->
+      <SelectColumn></SelectColumn>
       <!-- 面包屑导航栏 - 显示文件路径 -->
       <BreadCrumb></BreadCrumb>
       <!-- 表格组件 - 文件展示区 -->
@@ -18,7 +20,8 @@
 import SideMenu from "./components/SideMenu.vue"; // 引入左侧菜单组件
 import BreadCrumb from "./components/BreadCrumb.vue"; // 引入面包屑导航栏
 import FileTable from "./components/FileTable.vue"; // 引入文件表格展示区
-import FilePagination from "./components/FilePagination.vue"; //  引入分页组件
+import FilePagination from "./components/FilePagination.vue"; // 引入分页组件
+import SelectColumn from "./components/SelectColumn.vue"; // 引入控制列显隐组件
 
 export default {
   name: "HomeView",
@@ -27,6 +30,7 @@ export default {
     BreadCrumb,
     FileTable,
     FilePagination,
+    SelectColumn,
   },
   data() {
     return {};

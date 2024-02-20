@@ -2,7 +2,7 @@
   <div id="file-table">
     <el-table
       :data="tableData"
-      height="calc(100vh - 152px)"
+      height="calc(100vh - 200px)"
       style="width: 100%"
     >
       <el-table-column fixed prop="fileName" label="文件名"></el-table-column>
@@ -98,6 +98,66 @@ export default {
       operaColumnIsFold: false, //  表格操作列-是否收缩
       // 表格数据先模拟
       tableData: [
+        {
+          fileName: "markdown样式文件",
+          extendName: "markdown",
+          fileSize: "10KB",
+          uploadTime: "2020-10-28 16:33:33",
+        },
+        {
+          fileName: "项目源码",
+          extendName: "zip",
+          fileSize: "7MB",
+          uploadTime: "2020-12-28 20:00:50",
+        },
+        {
+          fileName: "markdown样式文件",
+          extendName: "markdown",
+          fileSize: "10KB",
+          uploadTime: "2020-10-28 16:33:33",
+        },
+        {
+          fileName: "项目源码",
+          extendName: "zip",
+          fileSize: "7MB",
+          uploadTime: "2020-12-28 20:00:50",
+        },
+        {
+          fileName: "markdown样式文件",
+          extendName: "markdown",
+          fileSize: "10KB",
+          uploadTime: "2020-10-28 16:33:33",
+        },
+        {
+          fileName: "项目源码",
+          extendName: "zip",
+          fileSize: "7MB",
+          uploadTime: "2020-12-28 20:00:50",
+        },
+        {
+          fileName: "markdown样式文件",
+          extendName: "markdown",
+          fileSize: "10KB",
+          uploadTime: "2020-10-28 16:33:33",
+        },
+        {
+          fileName: "项目源码",
+          extendName: "zip",
+          fileSize: "7MB",
+          uploadTime: "2020-12-28 20:00:50",
+        },
+        {
+          fileName: "markdown样式文件",
+          extendName: "markdown",
+          fileSize: "10KB",
+          uploadTime: "2020-10-28 16:33:33",
+        },
+        {
+          fileName: "项目源码",
+          extendName: "zip",
+          fileSize: "7MB",
+          uploadTime: "2020-12-28 20:00:50",
+        },
         {
           fileName: "markdown样式文件",
           extendName: "markdown",
