@@ -18,8 +18,8 @@
 
 #### 项目结构图
 
-![Project Structure Diagram](./doc/Project Structure Diagram.png)
+![项目结构图](./doc/项目结构图.png)
 
 #### 技术架构图
 
-![Technical Architecture Diagram](./doc/Technical Architecture Diagram.png)
+![技术架构图](./doc/技术架构图.png)
