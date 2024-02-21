@@ -54,12 +54,16 @@ export default {
   methods: {
     // 设置显示列按钮 - 点击事件
     handleClickSelectColumn() {
+      // 1. 获取 store 中存储的表格显示列
+      this.selectedColumn = this.$store.getters.selectedColumnList;
       this.dialogVisible = true;
     },
     // 对话框 确定按钮
     dialogOk() {
+      // 2. 通过提交 mutation 更新表格显示列
+      this.$store.commit("changeSelectedColumnList", this.selectedColumn);
       this.dialogVisible = false;
-      console.log(this.selectedColumn);
+      // console.log(this.selectedColumn);
     },
   },
 };

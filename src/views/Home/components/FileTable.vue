@@ -4,16 +4,32 @@
       :data="tableData"
       height="calc(100vh - 200px)"
       style="width: 100%"
+      v-loading="loading"
     >
+      <!-- 文件名列 使用 fixed 属性固定列 -->
       <el-table-column fixed prop="fileName" label="文件名"></el-table-column>
-      <el-table-column prop="extendName" label="类型" width="100">
+      <!-- 通过 v-if 来控制 类型列 是否显示 -->
+      <el-table-column
+        prop="extendName"
+        label="类型"
+        width="100"
+        v-if="selectedColumnList.includes('extendName')"
+      >
       </el-table-column>
+      <!-- 通过 v-if 来控制 大小列 是否显示 -->
       <el-table-column
         prop="fileSize"
         label="大小"
         width="60"
+        v-if="selectedColumnList.includes('fileSize')"
       ></el-table-column>
-      <el-table-column prop="uploadTime" label="修改日期" width="180">
+      <!-- 通过 v-if 来控制 修改日期列 是否显示 -->
+      <el-table-column
+        prop="uploadTime"
+        label="修改日期"
+        width="180"
+        v-if="selectedColumnList.includes('uploadTime')"
+      >
       </el-table-column>
       <!-- 表格操作列 自定义表格头，原有的 label 需要删除，宽度动态变化 -->
       <el-table-column :width="operaColumnIsFold ? 200 : 100">
@@ -93,84 +109,36 @@
 <script>
 export default {
   name: "FileTable",
+  props: {
+    // 表格数据，同时需要删除原本在 data( return { } ) 中的 tableData，否则会报错
+    tableData: {
+      type: Array,
+      required: true,
+    },
+    // 表格加载状态
+    loading: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       operaColumnIsFold: false, //  表格操作列-是否收缩
       // 表格数据先模拟
-      tableData: [
-        {
-          fileName: "markdown样式文件",
-          extendName: "markdown",
-          fileSize: "10KB",
-          uploadTime: "2020-10-28 16:33:33",
-        },
-        {
-          fileName: "项目源码",
-          extendName: "zip",
-          fileSize: "7MB",
-          uploadTime: "2020-12-28 20:00:50",
-        },
-        {
-          fileName: "markdown样式文件",
-          extendName: "markdown",
-          fileSize: "10KB",
-          uploadTime: "2020-10-28 16:33:33",
-        },
-        {
-          fileName: "项目源码",
-          extendName: "zip",
-          fileSize: "7MB",
-          uploadTime: "2020-12-28 20:00:50",
-        },
-        {
-          fileName: "markdown样式文件",
-          extendName: "markdown",
-          fileSize: "10KB",
-          uploadTime: "2020-10-28 16:33:33",
-        },
-        {
-          fileName: "项目源码",
-          extendName: "zip",
-          fileSize: "7MB",
-          uploadTime: "2020-12-28 20:00:50",
-        },
-        {
-          fileName: "markdown样式文件",
-          extendName: "markdown",
-          fileSize: "10KB",
-          uploadTime: "2020-10-28 16:33:33",
-        },
-        {
-          fileName: "项目源码",
-          extendName: "zip",
-          fileSize: "7MB",
-          uploadTime: "2020-12-28 20:00:50",
-        },
-        {
-          fileName: "markdown样式文件",
-          extendName: "markdown",
-          fileSize: "10KB",
-          uploadTime: "2020-10-28 16:33:33",
-        },
-        {
-          fileName: "项目源码",
-          extendName: "zip",
-          fileSize: "7MB",
-          uploadTime: "2020-12-28 20:00:50",
-        },
-        {
-          fileName: "markdown样式文件",
-          extendName: "markdown",
-          fileSize: "10KB",
-          uploadTime: "2020-10-28 16:33:33",
-        },
-        {
-          fileName: "项目源码",
-          extendName: "zip",
-          fileSize: "7MB",
-          uploadTime: "2020-12-28 20:00:50",
-        },
-      ],
+      // tableData: [
+      //   {
+      //     fileName: "markdown样式文件",
+      //     extendName: "markdown",
+      //     fileSize: "10KB",
+      //     uploadTime: "2020-10-28 16:33:33",
+      //   },
+      //   {
+      //     fileName: "项目源码",
+      //     extendName: "zip",
+      //     fileSize: "7MB",
+      //     uploadTime: "2020-12-28 20:00:50",
+      //   },
+      // ],
     };
   },
   watch: {
@@ -182,6 +150,12 @@ export default {
   created() {
     this.operaColumnIsFold =
       sessionStorage.getItem("operaColumnIsFold") === "true"; //  读取保存的状态
+  },
+  computed: {
+    // 表格列显示
+    selectedColumnList() {
+      return this.$store.getters.selectedColumnList;
+    },
   },
   methods: {
     // 删除按钮 - 点击事件

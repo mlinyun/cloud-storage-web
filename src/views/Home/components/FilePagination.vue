@@ -17,23 +17,38 @@
 <script>
 export default {
   name: "FilePagination",
+  props: {
+    pageData: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-      pageData: {
-        currentPage: 1, // 页码
-        pageCount: 20, // 每页显示条目个数
-        total: 0, // 总数
-      },
+      // 通过父组件传递 pageData，需要注释下面的 pageData
+      // pageData: {
+      //   currentPage: 1, // 页码
+      //   pageCount: 20, // 每页显示条目个数
+      //   total: 0, // 总数
+      // },
     };
   },
   methods: {
     // 分页组件 当前页码改变
     handleCurrentChange(currentPage) {
-      this.pageData.currentPage = currentPage;
+      // this.pageData.currentPage = currentPage;
+      this.$emit("changePageData", {
+        ...this.pageData,
+        currentPage,
+      });
     },
     // 分页组件 每页显示条目个数改变
     handleSizeChange(pageCount) {
-      this.pageData.pageCount = pageCount;
+      // this.pageData.pageCount = pageCount;
+      this.$emit("changePageData", {
+        ...this.pageData,
+        pageCount,
+      });
     },
   },
 };
